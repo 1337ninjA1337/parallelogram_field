@@ -1,5 +1,8 @@
 body{
     height: 100vh;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
     background: grey;
     display: flex;
     justify-content: center;
@@ -13,6 +16,23 @@ form{
     align-items: center;
     flex-wrap: wrap;
     transform: skewX(130deg);
+    position: relative;
+}
+form::after{
+    content: "Отправка";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: green;
+    transform: skew(-130deg);
+    opacity: 0;
+    visibility: hidden;
+}
+form._sending::after{
+    opacity: 1;
+    visibility: visible;
 }
 #input{
     width: 20em;
@@ -50,6 +70,13 @@ input{
     display: inline-block;
     transform: skewX(-130deg);
 }
-._req.error{
+._error{
     box-shadow: 0 0 5px red;
+}
+
+@media screen and (max-width: 900px) {
+    form{transform: skewX(0deg);}
+    form::after{transform: skew(0deg);}
+    input{transform: skewX(0deg);}
+    #text{transform: skewX(0deg);}
 }
